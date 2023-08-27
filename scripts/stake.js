@@ -15,7 +15,7 @@ async function main() {
 
   const name = "Stake EthlinQ LP";
   const symbol = "SELP";
-  const ethlinqPair = ""; //address will be place here
+  const ethlinqPair = "0x2afb813363F9339bb9C7ab59C0D33f11dE1bfaeF";
   // We get the contract to deploy
   const stakeEthlinqLP = await hre.ethers.getContractFactory("EthlinQStaking");
 
