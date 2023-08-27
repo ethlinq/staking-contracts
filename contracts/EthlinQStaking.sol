@@ -12,25 +12,12 @@ contract EthlinQStaking is BasePool, IEthlinQStaking {
     using Math for uint256;
     using SafeERC20 for IERC20;
 
-    bytes32 public constant ADMIN_ROLE = keccak256("ADMIN_ROLE");
-
-    uint256 public rewardPerSecond;
-
-    modifier onlyAdmin() {
-        require(
-            hasRole(ADMIN_ROLE, _msgSender()),
-            "EthlinQStaking: permission denied"
-        );
-        _;
-    }
-
     constructor(
         string memory _name,
         string memory _symbol,
         address _depositToken
     ) BasePool(_name, _symbol, _depositToken) {}
 
-    event RewardPerSecondUpdated(uint256 _oldRate, uint256 _newRate);
     event Deposited(
         uint256 amount,
         address indexed receiver,
@@ -61,10 +48,6 @@ contract EthlinQStaking is BasePool, IEthlinQStaking {
     }
 
     receive() external payable {}
-
-    function setRewardPerSecond(uint256 _newRate) external onlyAdmin {
-        rewardPerSecond = _newRate;
-    }
 
     // disable transfers
     function _transfer(
